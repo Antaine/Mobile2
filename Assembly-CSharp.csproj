@@ -57,6 +57,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BeeMovement.cs" />
      <Compile Include="Assets\Scripts\BirdMovement.cs" />
+     <Compile Include="Assets\Scripts\FlowerPickup.cs" />
+     <Compile Include="Assets\Scripts\FlowerSpawning.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>E:/Workspaces/MobileG00347577Antaine/MobileProject2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
