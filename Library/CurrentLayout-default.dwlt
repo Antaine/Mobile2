@@ -393,9 +393,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffffac380000c6380000ca380000e2380000e6380000
+      m_SelectedIDs: 64fbffff
+      m_LastClickedID: -1180
+      m_ExpandedIDs: 6afbffffb2380000d0380000d4380000f2380000f6380000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -455,9 +455,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.665323, y: 5.238408, z: -7.5624247}
+    m_Target: {x: -0.72797763, y: 0.53348714, z: -9.649614}
     speed: 2
-    m_Value: {x: 5.988027, y: 5.5678353, z: -7.514334}
+    m_Value: {x: -0.72797763, y: 0.53348714, z: -9.649614}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -507,9 +507,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.779786
+    m_Target: 9.889266
     speed: 2
-    m_Value: 13.381975
+    m_Value: 9.889266
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -674,23 +674,23 @@ MonoBehaviour:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 60390000
-    m_LastClickedID: 14688
-    m_ExpandedIDs: 000000004e39000056390000
+    m_SelectedIDs: 80390000
+    m_LastClickedID: 14720
+    m_ExpandedIDs: 000000006e390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Prefabs
-      m_OriginalName: Prefabs
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 14688
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -704,7 +704,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e390000
+    m_ExpandedIDs: 000000006e390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -941,4 +941,4 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 64
+  m_LastVerticalScrollValue: 0
