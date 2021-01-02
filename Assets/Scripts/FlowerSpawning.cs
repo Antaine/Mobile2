@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlowerSpawning : MonoBehaviour
 {
     public GameObject flowerPrefab;
+    public static List<GameObject> activeFlowers = new List<GameObject>();
     public GameObject quad;
     public int numOfFlowers = 5;
     public static int curFlowers =0;
@@ -26,7 +27,8 @@ public class FlowerSpawning : MonoBehaviour
             screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
             screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
             pos = new Vector2(screenX, screenY);
-            Instantiate(flowerPrefab, pos, transform.rotation);
+            GameObject go = Instantiate(flowerPrefab, pos, transform.rotation);
+            activeFlowers.Add(go);
             curFlowers++;
         }
     }

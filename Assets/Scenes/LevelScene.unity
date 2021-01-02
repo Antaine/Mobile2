@@ -636,7 +636,7 @@ MonoBehaviour:
   flowerPrefab: {fileID: 1333867354542052209, guid: 81ec83725df919b4db6124dbcb8a1eca,
     type: 3}
   quad: {fileID: 519420028}
-  numOfFlowers: 5
+  numOfFlowers: 10
 --- !u!4 &1012225868
 Transform:
   m_ObjectHideFlags: 0
