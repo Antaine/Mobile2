@@ -17,20 +17,36 @@ public class FlowerSpawning : MonoBehaviour
     void Update(){
         if(curFlowers<numOfFlowers){
             spawnFlowers();
-        }
-        
+        } 
     }
 
     void spawnFlowers(){
         BoxCollider2D c = quad.GetComponent<BoxCollider2D>();
-        while(curFlowers<numOfFlowers){
-            screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
-            screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
-            pos = new Vector2(screenX, screenY);
-            GameObject go = Instantiate(flowerPrefab, pos, transform.rotation);
-            activeFlowers.Add(go);
-            curFlowers++;
+        if(BeeMovement.targetId ==0){
+            while(curFlowers<numOfFlowers){
+                screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
+                screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
+                pos = new Vector2(screenX, screenY);
+                GameObject go = Instantiate(flowerPrefab, pos, transform.rotation);
+                activeFlowers.Add(go);
+                curFlowers++;
+                print("Spawning Flower1");
+            }
         }
+
+        else{
+        //    while(curFlowers<numOfFlowers){
+                screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
+                screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
+                pos = new Vector2(screenX, screenY);
+                GameObject go = Instantiate(flowerPrefab, pos, transform.rotation);
+            //    activeFlowers.Insert(BeeMovement.targetId,go);
+                activeFlowers.Add(go);
+                print("Spawning Flower2");
+                curFlowers++;
+           // }
+        }
+
     }
 
 

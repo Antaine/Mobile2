@@ -9,7 +9,8 @@ public class BeeMovement : MonoBehaviour
     [SerializeField] float ySpeed = 2.0f;
     CapsuleCollider2D BeeCollider;
     private float range =5;
-    private bool targetFound;
+    public static bool targetFound;
+    public static int targetId =0;
     
     //Start is called before the first frame update
     void Start()
@@ -34,21 +35,32 @@ public class BeeMovement : MonoBehaviour
     }
 
     private void Scan(){
-        if(Vector2.Distance(this.transform.position,FlowerSpawning.activeFlowers[0].transform.position) <= range)
+        int i =0;
+        foreach(GameObject flower in FlowerSpawning.activeFlowers)
         {
-            Debug.Log("Player in range");
-            targetFound = true;
+            if(flower!= null){
+                print("Scanning Loop 1");
+                if(Vector2.Distance(this.transform.position,flower.transform.position) <= range)
+                {
+                    print("Scanning If");
+                    Debug.Log("Flower in range");
+                    targetFound = true;
+                    targetId = i;
+                    return;
+                }
+            }
+            i++;
         }
     }
 
     private void Searching(){
         myRb.velocity = new Vector2(xSpeed,ySpeed);
+        print("Searching");
         Scan();
     }
 
     private void goToFlower(){
         myRb.velocity = new Vector2(0,0);
-        transform.position = Vector2.MoveTowards(transform.position, FlowerSpawning.activeFlowers[0].transform.position, 1.0f*Time.deltaTime);
-        
+        transform.position = Vector2.MoveTowards(transform.position, FlowerSpawning.activeFlowers[targetId].transform.position, 1.0f*Time.deltaTime);   
     }
 }
