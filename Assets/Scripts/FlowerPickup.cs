@@ -10,7 +10,7 @@ public class FlowerPickup : MonoBehaviour
             FlowerSpawning.activeFlowers.RemoveAll(flower => flower == null);
             FlowerSpawning.curFlowers--;
             //BeeMovement.targetFound = false;
-            print("Pick Up Flower");
+            //print("Pick Up Flower");
         }
     }
 

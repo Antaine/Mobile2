@@ -24,6 +24,6 @@ public class SpawnBirds : MonoBehaviour
         pos = new Vector2(screenX, screenY);
         GameObject nest = Instantiate(nestPrefab, pos, transform.rotation);
         GameObject bird = Instantiate(birdPrefab, pos, transform.rotation);
-        print("Spawning Birds");
+        //print("Spawning Birds");
     }
 }

@@ -20,6 +20,7 @@ public class SpawnHive : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            BeeMovement.hivePos = spawnPosition;
             Instantiate(hive, spawnPosition, Quaternion.Euler(new Vector2(0, 0)));
             this.GetComponent<SpawnHive>().enabled = false;
             panel.SetActive(false);
@@ -30,7 +31,7 @@ public class SpawnHive : MonoBehaviour
     // Start is called before the first frame update
     public void SpawnBees()
     {
-        for(int i =0;i<4;i++){
+        for(int i =0;i<1;i++){
             GameObject bee = Instantiate(beePrefab, spawnPosition, transform.rotation);
             Time.timeScale = 1.0f;
         }    

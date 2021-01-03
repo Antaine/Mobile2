@@ -32,7 +32,7 @@ public class FlowerSpawning : MonoBehaviour
         pos = new Vector2(screenX, screenY);
         GameObject go = Instantiate(flowerPrefab, pos, transform.rotation);
         activeFlowers.Add(go);
-        print("Spawning Flower2");
+        //print("Spawning Flower2");
         curFlowers++;
     }
 
