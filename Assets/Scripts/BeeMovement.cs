@@ -32,7 +32,6 @@ public class BeeMovement : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision){     
-
         if(collision.tag =="MainCamera")
             xSpeed *= -1f;
             ySpeed *= -1f;
@@ -59,7 +58,6 @@ public class BeeMovement : MonoBehaviour
                         targetFound = true;
                         Debug.Log("Target Found");
                         targetId = i;
-                        //return;
                     }
                 }      
             }
