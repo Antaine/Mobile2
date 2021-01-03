@@ -752,8 +752,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1012225868}
   - component: {fileID: 1012225867}
-  - component: {fileID: 1012225869}
   - component: {fileID: 1012225870}
+  - component: {fileID: 1012225869}
   m_Layer: 0
   m_Name: GameRules
   m_TagString: Untagged
@@ -798,11 +798,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012225866}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af0dfd08f287ff4d948166d6fa74ecb, type: 3}
+  m_Script: {fileID: 11500000, guid: 55afd3c3bc5e7914ea868f02c1c96ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  birdPrefab: {fileID: 2300751281713790118, guid: c71b96b45b548f242afe48967506310f,
+    type: 3}
+  nestPrefab: {fileID: 5732954645731379447, guid: bfaa47c2968ffd54b84919332f7fa4c4,
+    type: 3}
+  quad: {fileID: 519420028}
+  numOfBirds: 2
 --- !u!114 &1012225870
 MonoBehaviour:
   m_ObjectHideFlags: 0
