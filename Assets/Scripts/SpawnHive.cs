@@ -8,6 +8,7 @@ public class SpawnHive : MonoBehaviour
     public GameObject panel;
     public GameObject beePrefab;
     Vector2 spawnPosition;
+    private Vector2 moveDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +32,12 @@ public class SpawnHive : MonoBehaviour
     // Start is called before the first frame update
     public void SpawnBees()
     {
-        for(int i =0;i<1;i++){
+        for(int i =0;i<4;i++){
             GameObject bee = Instantiate(beePrefab, spawnPosition, transform.rotation);
+         //   while(moveDir == spawnPosition)
+          //  {
+          //      moveDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //}
             Time.timeScale = 1.0f;
         }    
     }
