@@ -5,9 +5,7 @@ using UnityEngine;
 public class BeeMovement : MonoBehaviour
 {
     Rigidbody2D myRb;
-    [SerializeField] float xSpeed = 2.0f;
     [SerializeField] float speed = 2.0f;
-    [SerializeField] float ySpeed = 2.0f;
     [SerializeField] int capacity = 5;
     CapsuleCollider2D BeeCollider;
     private int honey=0;
@@ -20,6 +18,12 @@ public class BeeMovement : MonoBehaviour
     private Vector2 moveDir;
     private bool atHive = false;
     private bool isDancing = false;
+    private float maxEnergy =100;
+    private float currEnergy;
+    private float midEnergy =70;
+    private float lowEnergy =30;
+    private float energyRate = 0;
+    SpriteRenderer sprite;
     
     //Start is called before the first frame update
     void Start()
@@ -29,6 +33,8 @@ public class BeeMovement : MonoBehaviour
         targetFound = false;
         this.myRb.velocity = new Vector2(0,0);
         moveDir = Random.insideUnitCircle.normalized;
+        this.currEnergy = maxEnergy;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,27 +42,38 @@ public class BeeMovement : MonoBehaviour
     {
         if(!isDancing)
         {
-            if(!atHive){
-                if(honey < capacity){
-                    if(targetFound)
-                        GoToFlower();
-                    
-                    else
-                        Searching();
+            if(!atHive)
+            {
+                if(currEnergy<= lowEnergy){
+                    sprite.color = new Color (255, 0, 0, 1); 
+                    ReturnToHive();
                 }
 
-                else
+                else{
+                    sprite.color = new Color (0, 128, 0, 1); 
+                    if(honey < capacity){
+                        if(targetFound)
+                            GoToFlower();
+                            
+                        else
+                            Searching();
+                        }
+
+                    else
                     ReturnToHive();
+                }
+
             }
         
             else{
-            Dance();
+                Dance();
             }
         }
-       
+        this.currEnergy += energyRate;
+        print(currEnergy);
     }
 
-     private void OnTriggerEnter2D(Collider2D collision){     
+    private void OnTriggerEnter2D(Collider2D collision){     
         if(collision.tag =="VBorder")
             this.moveDir.y *= -1f;
         if(collision.tag =="HBorder")
@@ -70,7 +87,7 @@ public class BeeMovement : MonoBehaviour
             //Dance();
         }
         
-     }
+    }
 
 
     private void Scan(){
@@ -100,10 +117,9 @@ public class BeeMovement : MonoBehaviour
 
     private void Searching(){
         isDancing = false;
+        this.energyRate = -0.1f;
         this.myRb.velocity = this.moveDir;
-        //transform.position = Vector2.MoveTowards(transform.position, moveDir, speed*Time.deltaTime);
         atHive = false;
-       // print(moveDir);
         Scan();
     }
 
@@ -119,7 +135,8 @@ public class BeeMovement : MonoBehaviour
     }
 
     private void ReturnToHive(){
-        this.myRb.velocity = new Vector2(0,0);
+        //this.myRb.velocity = new Vector2(0,0);
+        energyRate = -0.2f;
         float dis3 = Vector2.Distance(this.transform.position,hivePos);
          if(dis3<0.1){
              this.myRb.velocity = new Vector2(0,0);
@@ -128,13 +145,13 @@ public class BeeMovement : MonoBehaviour
 
         else{
             this.transform.position = Vector2.MoveTowards(transform.position, hivePos, speed*Time.deltaTime);
-        }
-        
+        }     
         print("Returning to Hive");
     }
 
     private void Dance(){
         print("Dance");
+        energyRate = 0.2f;
         this.honey = 0;
         isDancing = true;
         moveDir = Random.insideUnitCircle.normalized;
