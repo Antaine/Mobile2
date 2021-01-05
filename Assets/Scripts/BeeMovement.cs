@@ -5,7 +5,7 @@ using UnityEngine;
 public class BeeMovement : MonoBehaviour
 {
     Rigidbody2D myRb;
-    [SerializeField] float speed = 2.0f;
+    [SerializeField] float speed = 4.0f;
     [SerializeField] int capacity = 5;
     CapsuleCollider2D BeeCollider;
     private int honey=0;
@@ -61,7 +61,7 @@ public class BeeMovement : MonoBehaviour
                     if(this.currEnergy <= lowEnergy)
                         ReturnToHive();
                     
-                    if(!this.isResting){
+                    else if(!this.isResting){
                         if(targetFound){
                             GoToFlower();
                         }
@@ -125,12 +125,12 @@ public class BeeMovement : MonoBehaviour
 
     private void Searching(){
         this.energyRate = -0.1f;
-        this.myRb.velocity = this.moveDir;
+        this.myRb.velocity = this.moveDir*speed;
         Scan();
     }
 
     private void GoToFlower(){
-        //this.myRb.velocity = new Vector2(0,0);
+        this.myRb.velocity = new Vector2(0,0);
         if(FlowerSpawning.activeFlowers[targetId] != null)
         {
             this.transform.position = Vector2.MoveTowards(transform.position, FlowerSpawning.activeFlowers[targetId].transform.position, speed*Time.deltaTime);   
@@ -141,7 +141,7 @@ public class BeeMovement : MonoBehaviour
     }
 
     private void ReturnToHive(){
-        //this.myRb.velocity = new Vector2(0,0);
+        this.myRb.velocity = new Vector2(0,0);
         energyRate = -0.2f;
         float dis3 = Vector2.Distance(this.transform.position,hivePos);
         if(dis3<0.1){
@@ -164,7 +164,7 @@ public class BeeMovement : MonoBehaviour
         isResting = true;
         moveDir = Random.insideUnitCircle.normalized;
         if(this.currEnergy>=maxEnergy){
-            //this.Searching();
+            this.Searching();
             this.isResting = false;
         }
     }
@@ -183,7 +183,7 @@ public class BeeMovement : MonoBehaviour
 
         }
 
-        else
+        if(this.currEnergy<0)
         {
             this.myRb.velocity = new Vector2(0,0);
         }
