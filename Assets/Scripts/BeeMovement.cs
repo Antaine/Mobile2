@@ -17,12 +17,13 @@ public class BeeMovement : MonoBehaviour
     public static Vector2 hivePos;
     private Vector2 moveDir;
     private bool atHive = false;
-    private bool isDancing = false;
-    private float maxEnergy =100;
+    private bool isResting = false;
+    private bool atCapacity = false;
+    private float maxEnergy =150f;
     private float currEnergy;
-    private float midEnergy =70;
-    private float lowEnergy =30;
-    private float energyRate = 0;
+    private float midEnergy =100f;
+    private float lowEnergy =50f;
+    private float energyRate = 0f;
     SpriteRenderer sprite;
     
     //Start is called before the first frame update
@@ -35,39 +36,45 @@ public class BeeMovement : MonoBehaviour
         moveDir = Random.insideUnitCircle.normalized;
         this.currEnergy = maxEnergy;
         sprite = GetComponent<SpriteRenderer>();
+        this.Searching();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if(!isDancing)
-        {
-            if(!atHive)
-            {
-                if(currEnergy<= lowEnergy){
-                    sprite.color = new Color (255, 0, 0, 1); 
-                    ReturnToHive();
+        CheckEnergy();
+        CheckCapacity();
+        if(!this.atCapacity){
+            if(this.isResting == true){
+                if(this.currEnergy>= maxEnergy){
+                    this.atHive = false;
+                    this.isResting = false;
+                    this.moveDir = Random.insideUnitCircle.normalized;
+                    this.Searching();
                 }
+                else
+                    this.Rest();
+            }
 
-                else{
-                    sprite.color = new Color (0, 128, 0, 1); 
-                    if(honey < capacity){
-                        if(targetFound)
+            else if(isResting == false)
+            {
+                if(this.currEnergy>0f){
+                    if(this.currEnergy <= lowEnergy)
+                        ReturnToHive();
+                    
+                    if(!this.isResting){
+                        if(targetFound){
                             GoToFlower();
-                            
+                        }
                         else
+                        {
                             Searching();
                         }
-
-                    else
-                    ReturnToHive();
+                    }
                 }
-
             }
-        
-            else{
-                Dance();
-            }
+        }    
+        else{
+            ReturnToHive();
         }
         this.currEnergy += energyRate;
         print(currEnergy);
@@ -81,10 +88,11 @@ public class BeeMovement : MonoBehaviour
         if(collision.tag =="Flowers" && this.honey<capacity && targetFound){
             this.targetFound = false;
             this.honey++;
-            print("Capacity "+this.honey);}
+            //print("Capacity "+this.honey);
+            }
         if(collision.tag =="Hive" && this.honey >=capacity){
             this.myRb.velocity = new Vector2(0,0);
-            //Dance();
+            Rest();
         }
         
     }
@@ -101,8 +109,8 @@ public class BeeMovement : MonoBehaviour
                     if(Vector2.Distance(this.transform.position,flower.transform.position) <= range)
                     {
                         dis2 = dis1;
-                        print("Scanning If");
-                        Debug.Log("Flower in range");
+                       // print("Scanning If");
+                        //Debug.Log("Flower in range");
                         targetFound = true;
                         //Debug.Log("Target Found");
                         targetId = i;
@@ -116,15 +124,13 @@ public class BeeMovement : MonoBehaviour
     }
 
     private void Searching(){
-        isDancing = false;
         this.energyRate = -0.1f;
         this.myRb.velocity = this.moveDir;
-        atHive = false;
         Scan();
     }
 
     private void GoToFlower(){
-        this.myRb.velocity = new Vector2(0,0);
+        //this.myRb.velocity = new Vector2(0,0);
         if(FlowerSpawning.activeFlowers[targetId] != null)
         {
             this.transform.position = Vector2.MoveTowards(transform.position, FlowerSpawning.activeFlowers[targetId].transform.position, speed*Time.deltaTime);   
@@ -138,28 +144,59 @@ public class BeeMovement : MonoBehaviour
         //this.myRb.velocity = new Vector2(0,0);
         energyRate = -0.2f;
         float dis3 = Vector2.Distance(this.transform.position,hivePos);
-         if(dis3<0.1){
-             this.myRb.velocity = new Vector2(0,0);
-             Dance();
-         }
+        if(dis3<0.1){
+            isResting = true;
+            Rest();
+           // Time.timeScale = 0f;
+        }
 
         else{
             this.transform.position = Vector2.MoveTowards(transform.position, hivePos, speed*Time.deltaTime);
         }     
-        print("Returning to Hive");
+        //print("Returning to Hive");
     }
 
-    private void Dance(){
-        print("Dance");
+    private void Rest(){
+        this.myRb.velocity = new Vector2(0,0);
         energyRate = 0.2f;
         this.honey = 0;
-        isDancing = true;
+        atCapacity = false;
+        isResting = true;
         moveDir = Random.insideUnitCircle.normalized;
-        Invoke("Searching",5.0f);
+        if(this.currEnergy>=maxEnergy){
+            //this.Searching();
+            this.isResting = false;
+        }
     }
 
-   // private void SetPath(){
-        //moveDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //transform.position = Vector2.MoveTowards(transform.position, moveDir, speed*Time.deltaTime);
-  //  }
+    private void CheckEnergy(){
+        if(this.currEnergy>midEnergy){
+            this.sprite.color = new Color (0, 128, 0, 1);
+        }
+
+        else if(this.currEnergy<=midEnergy && this.currEnergy>lowEnergy){
+            this.sprite.color = new Color (255, 255, 0, 1);
+        }
+
+        else if(this.currEnergy<=lowEnergy && this.currEnergy>0f){
+            this.sprite.color = new Color (255, 0, 0, 1); 
+
+        }
+
+        else
+        {
+            this.myRb.velocity = new Vector2(0,0);
+        }
+    }
+
+    private void CheckCapacity(){
+        if(this.honey>=capacity){
+            ReturnToHive();
+            this.atCapacity = true;
+        }
+
+        else{
+            this.atCapacity = false;
+        }
+    }
 }
