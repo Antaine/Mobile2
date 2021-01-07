@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9042702623631649973}
   - component: {fileID: 1671075992090256639}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Hive
   m_TagString: Hive
   m_Icon: {fileID: 0}

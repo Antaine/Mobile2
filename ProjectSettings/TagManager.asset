@@ -10,6 +10,10 @@ TagManager:
   - Hive
   - VBorder
   - HBorder
+  - VBorder1
+  - VBorder2
+  - HBorder1
+  - Hborder2
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - Bees
   - Objects
   - Birds
-  - 
+  - Hive
   - 
   - 
   - 

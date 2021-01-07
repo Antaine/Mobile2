@@ -16,68 +16,93 @@ public class BeeMovement : MonoBehaviour
     private float dis2 = 6;
     public static Vector2 hivePos;
     private Vector2 moveDir;
-    private bool atHive = false;
+    public  bool atHive = false;
     private bool isResting = false;
     private bool atCapacity = false;
     private float maxEnergy =150f;
     private float currEnergy;
     private float midEnergy =100f;
     private float lowEnergy =50f;
-    private float energyRate = 0f;
+    private float energyRate = 0.3f;
+    private bool isFleeing = false;
     SpriteRenderer sprite;
+    private int deadBees = 0;
     
     //Start is called before the first frame update
     void Start()
     {
-        myRb = GetComponent<Rigidbody2D>();
-        BeeCollider = GetComponent<CapsuleCollider2D>();
-        targetFound = false;
+        this.myRb = GetComponent<Rigidbody2D>();
+        this.BeeCollider = GetComponent<CapsuleCollider2D>();
+        this.targetFound = false;
         this.myRb.velocity = new Vector2(0,0);
-        moveDir = Random.insideUnitCircle.normalized;
+        this.moveDir = Random.insideUnitCircle.normalized;
         this.currEnergy = maxEnergy;
-        sprite = GetComponent<SpriteRenderer>();
+        this.sprite = GetComponent<SpriteRenderer>();
         this.Searching();
+        deadBees = 0;
     }
 
     void FixedUpdate()
     {
-        CheckEnergy();
-        CheckCapacity();
-        if(!this.atCapacity){
-            if(this.isResting == true){
-                if(this.currEnergy>= maxEnergy){
-                    this.atHive = false;
-                    this.isResting = false;
-                    this.moveDir = Random.insideUnitCircle.normalized;
-                    this.Searching();
-                }
-                else
-                    this.Rest();
+        if(deadBees>=4){
+            print("GameOVer");
+        }
+        else
+        {
+            CheckEnergy();
+            CheckCapacity();
+            DetectBird();
+            if(isFleeing)
+            {
+                this.ReturnToHive();
             }
 
-            else if(isResting == false)
+            else
             {
-                if(this.currEnergy>0f){
-                    if(this.currEnergy <= lowEnergy)
-                        ReturnToHive();
-                    
-                    else if(!this.isResting){
-                        if(targetFound){
-                            GoToFlower();
+                if(!this.atCapacity)
+                {
+                    if(this.isResting == true)
+                    {
+                        if(this.currEnergy>= maxEnergy){
+                            this.atHive = false;
+                            this.isResting = false;
+                            this.moveDir = Random.insideUnitCircle.normalized;
+                            this.Searching();
                         }
                         else
+                            this.Rest();
+                    }
+
+                    else if(this.isResting == false)
+                    {
+                        if(this.currEnergy>0f)
                         {
-                            Searching();
+                            if(this.currEnergy <= lowEnergy)
+                                this.ReturnToHive();
+                                
+                            else if(!this.isResting)
+                            {
+                                if(targetFound)
+                                {
+                                    this.GoToFlower();
+                                }
+                                else
+                                {
+                                    this.Searching();
+                                }
+                            }
                         }
                     }
-                }
+                }    
+            else
+            {
+            this.ReturnToHive();
             }
-        }    
-        else{
-            ReturnToHive();
+            }
+
+            this.currEnergy += energyRate;
+            print(currEnergy);
         }
-        this.currEnergy += energyRate;
-        print(currEnergy);
     }
 
     private void OnTriggerEnter2D(Collider2D collision){     
@@ -85,48 +110,75 @@ public class BeeMovement : MonoBehaviour
             this.moveDir.y *= -1f;
         if(collision.tag =="HBorder")
             this.moveDir.x *= -1f;
-        if(collision.tag =="Flowers" && this.honey<capacity && targetFound){
+        if(collision.tag =="Flowers" && this.honey<capacity && this.targetFound){
             this.targetFound = false;
             this.honey++;
             //print("Capacity "+this.honey);
             }
-        if(collision.tag =="Hive" && this.honey >=capacity){
+        if(collision.tag =="Hive" && this.honey >=this.capacity){
             this.myRb.velocity = new Vector2(0,0);
-            Rest();
+            this.Rest();
+        }
+
+        if(collision.tag =="Bird" && !this.atHive ){
+            Destroy(gameObject);
+            SpawnHive.activeBees.RemoveAll(bee => bee == null);
+            deadBees++;
+            return;
         }
         
     }
 
-
-    private void Scan(){
+    private void ScanFlowers(){
         int i =0;
         foreach(GameObject flower in FlowerSpawning.activeFlowers)
         {
-            if(flower!= null){
-                dis1 = Vector2.Distance(this.transform.position,flower.transform.position);
-                if(dis1 < dis2){
-                    print("Scanning Loop 1");
+            if(flower != null){
+                this.dis1 = Vector2.Distance(this.transform.position,flower.transform.position);
+                if(this.dis1 < this.dis2){
+                    //print("Scanning Loop 1");
                     if(Vector2.Distance(this.transform.position,flower.transform.position) <= range)
                     {
-                        dis2 = dis1;
-                       // print("Scanning If");
-                        //Debug.Log("Flower in range");
-                        targetFound = true;
-                        //Debug.Log("Target Found");
-                        targetId = i;
+                        this.dis2 = this.dis1;
+                        this.targetFound = true;
+                        this.targetId = i;
                     }
                 }      
             }
             i++;
         }
-        dis1 = 0;
-        dis2 = range+5;
+        this.dis1 = 0;
+        this.dis2 = range+5;
+    }
+
+    private void DetectBird(){
+        int i =0;
+        foreach(GameObject bird in SpawnBirds.activeBirds)
+        {
+            if(this.BeeCollider != null){
+                this.dis1 = Vector2.Distance(this.transform.position,bird.transform.position);
+                if(Vector2.Distance(this.transform.position,bird.transform.position) <= range)
+                {
+                    isFleeing = true;
+                    ReturnToHive();
+                    return;
+                }
+                
+                i++;
+            }
+            this.dis1 = 0;
+            this.dis2 = range+5;
+            //ScanFlowers();
+        }
     }
 
     private void Searching(){
         this.energyRate = -0.1f;
         this.myRb.velocity = this.moveDir*speed;
-        Scan();
+        DetectBird();
+        if(!isFleeing){
+            ScanFlowers();
+        }
     }
 
     private void GoToFlower(){
@@ -136,34 +188,38 @@ public class BeeMovement : MonoBehaviour
             this.transform.position = Vector2.MoveTowards(transform.position, FlowerSpawning.activeFlowers[targetId].transform.position, speed*Time.deltaTime);   
         }
         else{
-            targetFound = false;
+            this.targetFound = false;
         }
     }
 
     private void ReturnToHive(){
         this.myRb.velocity = new Vector2(0,0);
-        energyRate = -0.2f;
-        float dis3 = Vector2.Distance(this.transform.position,hivePos);
-        if(dis3<0.1){
-            isResting = true;
-            Rest();
-           // Time.timeScale = 0f;
-        }
+        this.energyRate = -0.2f;
+        if(this.transform.position != null){
+            float dis3 = Vector2.Distance(this.transform.position,hivePos);
+            if(dis3<0.1){
+                this.isResting = true;
+                this.isFleeing = false;
+                Rest();
+            // Time.timeScale = 0f;
+            }
 
-        else{
-            this.transform.position = Vector2.MoveTowards(transform.position, hivePos, speed*Time.deltaTime);
-        }     
+            else{
+                this.transform.position = Vector2.MoveTowards(transform.position, hivePos, speed*Time.deltaTime);
+            }   
+        }
+  
         //print("Returning to Hive");
     }
 
     private void Rest(){
-        this.myRb.velocity = new Vector2(0,0);
-        energyRate = 0.2f;
+        //this.myRb.velocity = new Vector2(0,0);
+        this.energyRate = 0.2f;
         this.honey = 0;
-        atCapacity = false;
-        isResting = true;
-        moveDir = Random.insideUnitCircle.normalized;
+        this.atCapacity = false;
+        this.isResting = true;
         if(this.currEnergy>=maxEnergy){
+            this.moveDir = Random.insideUnitCircle.normalized;
             this.Searching();
             this.isResting = false;
         }
