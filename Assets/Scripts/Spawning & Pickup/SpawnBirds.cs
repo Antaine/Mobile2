@@ -11,6 +11,7 @@ public class SpawnBirds : MonoBehaviour
     private int i =0;
     private float screenX,screenY;
     Vector2 pos;
+    public static Vector2 nest1,nest2;
     public static List<GameObject> activeBirds = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -27,12 +28,12 @@ public class SpawnBirds : MonoBehaviour
             GameObject nest = Instantiate(nestPrefab, pos, transform.rotation);
             GameObject bird = Instantiate(birdPrefab, pos, transform.rotation);
             activeBirds.Add(bird);
-           /* if(i==0){
-                BirdMovement.nestPos1 = pos;
+           if(i==0){
+                nest1 = pos;
             }
 
             else
-                BirdMovement.nestPos2 = pos;*/
+                nest2 = pos;
         }
        
         //print("Spawning Birds");

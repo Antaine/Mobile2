@@ -57,11 +57,14 @@ public class Bee : MonoBehaviour
            this.moveDir.x *= -1f;
         if(collision.tag =="Flowers")
             this.atFlower = true;
+        if(collision.tag =="Bird" && !this.atHive ){
+            Destroy(gameObject);
+            SpawnHive.activeBees.RemoveAll(bee => bee == null);
+        }
     }
 
     public void CheckEnergy(Bee bee){
         bee.currEnergy += bee.energyRate;
-        //Debug.Log(bee.currEnergy);
         if(bee.currEnergy>bee.midEnergy){
             bee.sprite.color = new Color (0, 128, 0, 1);
         }

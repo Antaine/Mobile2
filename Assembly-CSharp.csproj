@@ -62,16 +62,17 @@
      <Compile Include="Assets\Scripts\BeeStates\StateFleeing.cs" />
      <Compile Include="Assets\Scripts\BeeStates\StateGathering.cs" />
      <Compile Include="Assets\Scripts\BeeStates\StateSearching.cs" />
-     <Compile Include="Assets\Scripts\Bird.cs" />
      <Compile Include="Assets\Scripts\BirdMovement.cs" />
+     <Compile Include="Assets\Scripts\BirdStates\Bird.cs" />
+     <Compile Include="Assets\Scripts\BirdStates\StateChasing.cs" />
+     <Compile Include="Assets\Scripts\BirdStates\StateEating.cs" />
+     <Compile Include="Assets\Scripts\BirdStates\StateFlying.cs" />
+     <Compile Include="Assets\Scripts\BirdStates\StateResting.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\FlowerPickup.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\FlowerSpawning.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnBirds.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnHive.cs" />
      <Compile Include="Assets\Scripts\State.cs" />
-     <Compile Include="Assets\Scripts\StateChasing.cs" />
-     <Compile Include="Assets\Scripts\StateEating.cs" />
-     <Compile Include="Assets\Scripts\StateFlying.cs" />
      <Compile Include="Assets\Scripts\StateMachine.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>E:/Workspaces/MobileG00347577Antaine/MobileProject2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

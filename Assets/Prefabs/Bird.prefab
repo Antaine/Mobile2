@@ -114,8 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d67ae3446d39f147ac60babd57d67d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSpeed: 2
-  ySpeed: 2
 --- !u!50 &3253122287093621295
 Rigidbody2D:
   serializedVersion: 4
@@ -165,3 +163,16 @@ MonoBehaviour:
   BirdCollider: {fileID: 0}
   birdDir: {x: 0, y: 0}
   speed: 2
+  targetId: 0
+  isChasing: 0
+  isEating: 0
+  isFleeing: 0
+  atNest: 0
+  maxEnergy: 1200
+  currEnergy: 0
+  midEnergy: 500
+  lowEnergy: 50
+  energyRate: 0
+  isResting: 0
+  nestPos1: {x: 0, y: 0}
+  nestPos2: {x: 0, y: 0}
