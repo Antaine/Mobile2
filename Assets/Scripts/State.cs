@@ -6,6 +6,7 @@ using System;
 public abstract class State
 {
     protected Bee bee;
+    protected Bird bird;
     protected Rigidbody2D myRb;
     protected CapsuleCollider2D BeeCollider;
     protected SpriteRenderer sprite;
@@ -14,6 +15,11 @@ public abstract class State
     public State(Bee connectedBee)
     {
         bee = connectedBee;
+    }
+
+    public State(Bird connectedBird)
+    {
+        bird = connectedBird;
     }
     public virtual void EnterState()
     {

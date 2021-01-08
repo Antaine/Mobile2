@@ -16,20 +16,15 @@ public class StateMachine : MonoBehaviour
 
     private void Update()
     {
-        
         if(currentState == null) return;
-        //print(currentState);
         Type nextState = currentState.UpdateState();
         if(nextState != currentState.GetType())
             SwitchState(allStates[nextState]);
     }
-
-
     private void SwitchState(State newState)
     {
         currentState.ExitState();
         currentState = newState;
         currentState.EnterState();
     }
-
 }
