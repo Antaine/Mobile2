@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BeeMovement : MonoBehaviour
-{
+{/*
     Rigidbody2D myRb;
     [SerializeField] float speed = 4.0f;
     [SerializeField] int capacity = 5;
@@ -19,7 +19,6 @@ public class BeeMovement : MonoBehaviour
     public  bool atHive = false;
     private bool isResting = false;
     private bool atCapacity = false;
-    private float maxEnergy =150f;
     private float currEnergy;
     private float midEnergy =100f;
     private float lowEnergy =50f;
@@ -254,5 +253,5 @@ public class BeeMovement : MonoBehaviour
         else{
             this.atCapacity = false;
         }
-    }
+    }*/
 }

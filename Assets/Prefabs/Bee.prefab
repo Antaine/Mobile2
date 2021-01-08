@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5571689410546520421}
   - component: {fileID: 5005844655314673379}
   - component: {fileID: 2896109083443526457}
+  - component: {fileID: 2171044117061136133}
+  - component: {fileID: 5524313927337297499}
   m_Layer: 9
   m_Name: Bee
   m_TagString: Bees
@@ -128,10 +130,50 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2896109083443526460}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1563056df7a22b4f99366c53aec51f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+--- !u!114 &2171044117061136133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896109083443526460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842061c1eae9eee40828077faed6f9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowerFound: 0
+  atFlower: 0
+  isFleeing: 0
+  atHive: 0
+  isRested: 0
+  targetId: 0
+  atCapacity: 0
+  honey: 0
   capacity: 5
+  maxEnergy: 400
+  currEnergy: 0
+  midEnergy: 250
+  lowEnergy: 100
+  energyRate: -0.1
+  myRb: {fileID: 0}
+  BeeCollider: {fileID: 0}
+  moveDir: {x: 0, y: 0}
+  beeSpeed: 2
+--- !u!114 &5524313927337297499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896109083443526460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d6a9cca1803ad48be34c477408e781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

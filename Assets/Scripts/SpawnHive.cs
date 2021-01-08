@@ -7,22 +7,23 @@ public class SpawnHive : MonoBehaviour
     public GameObject hive;
     public GameObject panel;
     public GameObject beePrefab;
-    Vector2 spawnPosition;
+    public static Vector2 spawnPosition;
     private Vector2 moveDir;
+    public static int score =0;
     public static List<GameObject> activeBees = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 0;
+        score = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            BeeMovement.hivePos = spawnPosition;
+            //BeeMovement.hivePos = spawnPosition;
             Instantiate(hive, spawnPosition, Quaternion.Euler(new Vector2(0, 0)));
             this.GetComponent<SpawnHive>().enabled = false;
             panel.SetActive(false);
@@ -38,6 +39,5 @@ public class SpawnHive : MonoBehaviour
             GameObject bee = Instantiate(beePrefab, spawnPosition, transform.rotation);
             activeBees.Add(bee);  
         }   
-
     }
 }
