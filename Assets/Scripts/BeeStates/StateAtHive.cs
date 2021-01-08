@@ -8,7 +8,8 @@ public class StateAtHive : State
     public StateAtHive(Bee connectedBee) : base(connectedBee)
     {
     }
-    
+
+    //Manages States
     public override Type UpdateState()
     {
         bee.isFleeing = false;
@@ -21,7 +22,7 @@ public class StateAtHive : State
             bee.atHive = false;
             return typeof(StateSearching);
     }
-
+    //Rest & increase Energy
     private void Rest(Bee bee){
         bee.myRb.velocity = new Vector2(0,0);
         bee.energyRate = 0.2f;

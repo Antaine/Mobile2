@@ -10,6 +10,7 @@ public class StateFleeing : State
     {
     }
 
+    //Checks When at Hive 
     public override Type UpdateState()
     {
         bee.CheckEnergy(bee);
@@ -20,22 +21,17 @@ public class StateFleeing : State
 
         return typeof(StateFleeing);
     }
-
-     private void ReturnToHive(){
-        //bee.myRb.velocity = new Vector2(0,0);
-        //Debug.Log(hivePos);
+    //Moves to Hive
+    private void ReturnToHive(){
         bee.energyRate = -0.3f;
-        //bee.myRb.velocity *= 0;
         if(bee.transform.position != null){
             float dis3 = Vector2.Distance(bee.transform.position,hivePos);
             if(dis3<0.01)
             {
-               // Debug.Log("At Hive");
                 bee.atHive = true;
                 return;
             }
             bee.transform.position = Vector2.MoveTowards(bee.transform.position, hivePos, bee.beeSpeed*Time.deltaTime);  
         }
     }
-
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlowerPickup : MonoBehaviour
 {
+    //Deletes Flowers
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.tag == "Bees"){
             Destroy(gameObject);

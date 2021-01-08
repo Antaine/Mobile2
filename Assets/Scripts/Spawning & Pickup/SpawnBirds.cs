@@ -13,12 +13,13 @@ public class SpawnBirds : MonoBehaviour
     Vector2 pos;
     public static Vector2 nest1,nest2;
     public static List<GameObject> activeBirds = new List<GameObject>();
-    // Start is called before the first frame update
+
     void Start()
     {
         spawnBirds();
     }
 
+    //Spawns Birds
    private void spawnBirds(){
         BoxCollider2D c = quad.GetComponent<BoxCollider2D>();
         for(i =0;i<numOfBirds;i++){
@@ -31,11 +32,8 @@ public class SpawnBirds : MonoBehaviour
            if(i==0){
                 nest1 = pos;
             }
-
             else
                 nest2 = pos;
         }
-       
-        //print("Spawning Birds");
     }
 }

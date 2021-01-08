@@ -5,6 +5,7 @@ using System;
 
 public class Bee : MonoBehaviour
 {
+    //Variables
     public bool flowerFound;
     public bool atFlower;
     public bool isFleeing;
@@ -36,6 +37,7 @@ public class Bee : MonoBehaviour
         BeeCollider = GetComponent<CapsuleCollider2D>();
     }
 
+    //Gets States & sets Default
     private void Awake()
     {
         stateMachine = GetComponent<StateMachine>();
@@ -50,6 +52,7 @@ public class Bee : MonoBehaviour
         stateMachine.SetUpStates(allStates,typeof(StateSearching));
     }
 
+    //Handles Collision Trigger
     private void OnTriggerEnter2D(Collider2D collision){     
         if(collision.tag =="VBorder")
             this.moveDir.y *= -1f;
@@ -63,6 +66,7 @@ public class Bee : MonoBehaviour
         }
     }
 
+    //Checks Energy Levels
     public void CheckEnergy(Bee bee){
         bee.currEnergy += bee.energyRate;
         if(bee.currEnergy>bee.midEnergy){

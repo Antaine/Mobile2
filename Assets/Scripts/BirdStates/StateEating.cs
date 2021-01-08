@@ -10,6 +10,7 @@ public class StateEating : State
     {
     }
     
+    //Eat Bee
     public override Type UpdateState()
     {
         bird.isChasing = false;

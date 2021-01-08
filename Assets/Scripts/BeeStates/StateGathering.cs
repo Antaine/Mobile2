@@ -9,17 +9,13 @@ public class StateGathering : State
     {
     }
 
+    //Manages State
     public override Type UpdateState()
     {
-        //bee.myRb.velocity *= 0;
         bee.honey++;
         bee.atFlower = false;
-        if(bee.honey>=bee.capacity)
-        {
-            return typeof(StateFleeing);
-        }
+        if(bee.honey>=bee.capacity){return typeof(StateFleeing);}
         else
             return typeof(StateSearching);
-
     }
 }

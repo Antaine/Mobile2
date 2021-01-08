@@ -20,7 +20,7 @@ public class FlowerSpawning : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Spawns Flowers
     void Update(){
         if(curFlowers<numOfFlowers){
             spawnFlowers();

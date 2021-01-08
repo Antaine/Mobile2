@@ -17,7 +17,7 @@ public class SpawnHive : MonoBehaviour
         Time.timeScale = 0;
         score = 0;
     }
-
+    //Updates Bees
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -30,8 +30,7 @@ public class SpawnHive : MonoBehaviour
             Time.timeScale = 1.0f; 
         }
     }
-
-    // Start is called before the first frame update
+    //Spawns Bees
     public void SpawnBees()
     {
         for(int i =0;i<4;i++){

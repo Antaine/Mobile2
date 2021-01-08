@@ -5,13 +5,11 @@ using System;
 
 public class StateResting : State
 {
-    private float dis1=0;
-    private float dis2 = 6;
-    private float range = 3f;
     public StateResting(Bird connectedBird) : base(connectedBird)
     {
     }
 
+    //Manage Resting State
     public override Type UpdateState()
     {
         Rest();
@@ -27,6 +25,7 @@ public class StateResting : State
         return typeof(StateResting);
     }
 
+    //Restore Energy
     private void Rest(){
         bird.myRb.velocity = new Vector2(0,0);
         bird.energyRate = 0.3f;

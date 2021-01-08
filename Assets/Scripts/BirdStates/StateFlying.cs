@@ -9,6 +9,7 @@ public class StateFlying : State
     {
     }
 
+    //Manages Flying
     public override Type UpdateState()
     {
         bird.energyRate = -0.4f;
@@ -25,7 +26,6 @@ public class StateFlying : State
             Debug.Log("Found bee");
             return typeof(StateChasing);
         }
-
         return typeof(StateFlying);
     }
 }

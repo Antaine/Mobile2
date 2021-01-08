@@ -5,6 +5,7 @@ using System;
 
 public class Bird : MonoBehaviour
 {
+    //Varaibles
     private StateMachine stateMachine;
     public Rigidbody2D myRb;
     public GameObject beeGO { get; private set;}
@@ -37,7 +38,8 @@ public class Bird : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         BirdCollider = GetComponent<CapsuleCollider2D>();
     }
-     private void Awake()
+    //Get States
+    private void Awake()
     {
         stateMachine = GetComponent<StateMachine>();
         Dictionary<Type,State> allStates = new Dictionary<Type,State>()
@@ -50,7 +52,7 @@ public class Bird : MonoBehaviour
         };
         stateMachine.SetUpStates(allStates,typeof(StateFlying));
     }
-
+    //Manage Collisions
     private void OnTriggerEnter2D(Collider2D collision){     
         if(collision.tag =="VBorder")
             this.birdDir.y *= -1f;
@@ -66,24 +68,19 @@ public class Bird : MonoBehaviour
             this.isChasing = false;
             this.isFleeing = true;
         }
-
         if(collision.tag =="Bees" ){
             this.isEating = true;
         }
     }
-
-      
-
+    //Check Energy Levels
     public void CheckEnergy(Bird bird){
         bird.currEnergy += bird.energyRate;
         if(bird.currEnergy>bird.midEnergy){
             bird.sprite.color = new Color (0, 128, 0, 1);
         }
-
         else if(bird.currEnergy<=bird.midEnergy && bird.currEnergy>bird.lowEnergy){
             bird.sprite.color = new Color (255, 255, 0, 1);
         }
-
         else if(bird.currEnergy<=bird.lowEnergy && bird.currEnergy>0f){
             bird.sprite.color = new Color (255, 0, 0, 1);
             bird.isFleeing = true; 
@@ -110,7 +107,7 @@ public class Bird : MonoBehaviour
         } 
     }
 
-        public void ScanBees(Bird bird){
+    public void ScanBees(Bird bird){
         int i =0;
         foreach(GameObject bee in SpawnHive.activeBees)
         {

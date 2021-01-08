@@ -8,10 +8,9 @@ public class StateSearching : State
     private float range = 2.5f;
     private float dis1=0;
     private float dis2 = 6;
-    public StateSearching(Bee connectedBee) : base(connectedBee)
-    {
-    }
+    public StateSearching(Bee connectedBee) : base(connectedBee){}
 
+    //Manages State
     public override Type UpdateState()
     {
         bee.CheckEnergy(bee);
@@ -35,7 +34,9 @@ public class StateSearching : State
         return typeof(StateSearching);
     }
 
-    private void DetectBird(){
+    //Detects Danger
+    private void DetectBird()
+    {
         int i =0;
         foreach(GameObject bird in SpawnBirds.activeBirds)
         {
@@ -49,6 +50,7 @@ public class StateSearching : State
         }
     }
 
+    //Looks for flowers
     private void ScanFlowers(){
         int i =0;
         foreach(GameObject flower in FlowerSpawning.activeFlowers)
@@ -69,7 +71,7 @@ public class StateSearching : State
         this.dis1 = 0;
         this.dis2 = range+5;
     }
-
+    //Move to flower
     private void GoToFlower(){
         bee.myRb.velocity *= 0;
         if(FlowerSpawning.activeFlowers[bee.targetId] != null)
@@ -80,9 +82,4 @@ public class StateSearching : State
             bee.flowerFound = false;
         }
     }
-
-    
-
-
-
 }

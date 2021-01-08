@@ -9,6 +9,7 @@ public class StateChasing : State
     {
     }
 
+    //Manage Chase
     public override Type UpdateState()
     {
         bird.energyRate = -0.8f;
@@ -29,10 +30,8 @@ public class StateChasing : State
             bird.isFleeing = true;
             return typeof(StateFlying);
         }
-
-            
     }
-
+    //Follow Bee
     private void ChaseBee(){
         bird.myRb.velocity *= 0;
         if(SpawnHive.activeBees[bird.targetId] != null)
@@ -43,5 +42,4 @@ public class StateChasing : State
             bird.isChasing = false;
         }
     }
-
 }
