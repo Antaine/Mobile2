@@ -27,12 +27,12 @@ public class SpawnBirds : MonoBehaviour
             GameObject nest = Instantiate(nestPrefab, pos, transform.rotation);
             GameObject bird = Instantiate(birdPrefab, pos, transform.rotation);
             activeBirds.Add(bird);
-            if(i==0){
+           /* if(i==0){
                 BirdMovement.nestPos1 = pos;
             }
 
             else
-                BirdMovement.nestPos2 = pos;
+                BirdMovement.nestPos2 = pos;*/
         }
        
         //print("Spawning Birds");

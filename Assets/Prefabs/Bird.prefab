@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -8952182757443984996}
   - component: {fileID: -6804764450915289895}
   - component: {fileID: 3253122287093621295}
+  - component: {fileID: -573334366836880604}
+  - component: {fileID: 4527414016628571181}
   m_Layer: 12
   m_Name: Bird
   m_TagString: Bird
@@ -135,3 +137,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-573334366836880604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300751281713790118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d6a9cca1803ad48be34c477408e781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4527414016628571181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300751281713790118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52d9cee6c780cd41acbba9fbd7502ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRb: {fileID: 0}
+  BirdCollider: {fileID: 0}
+  birdDir: {x: 0, y: 0}
+  speed: 2

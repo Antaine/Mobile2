@@ -61,7 +61,7 @@ public class Bee : MonoBehaviour
 
     public void CheckEnergy(Bee bee){
         bee.currEnergy += bee.energyRate;
-        Debug.Log(bee.currEnergy);
+        //Debug.Log(bee.currEnergy);
         if(bee.currEnergy>bee.midEnergy){
             bee.sprite.color = new Color (0, 128, 0, 1);
         }

@@ -69,6 +69,8 @@
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnBirds.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnHive.cs" />
      <Compile Include="Assets\Scripts\State.cs" />
+     <Compile Include="Assets\Scripts\StateChasing.cs" />
+     <Compile Include="Assets\Scripts\StateEating.cs" />
      <Compile Include="Assets\Scripts\StateFlying.cs" />
      <Compile Include="Assets\Scripts\StateMachine.cs" />
  <Reference Include="Unity.Timeline.Editor">

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BirdMovement : MonoBehaviour
-{
+{/*
     Rigidbody2D myRb;
     [SerializeField] float xSpeed = 2.0f;
     [SerializeField] float ySpeed = 2.0f;
@@ -172,5 +172,5 @@ public class BirdMovement : MonoBehaviour
 
     private void Eating(){
         this.isEating = false;
-    }
+    }*/
 }

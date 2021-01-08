@@ -13,7 +13,7 @@ public class StateDancing : State
     {
         SpawnHive.score += bee.honey;
         bee.honey =0;
-        Debug.Log("Score "+ SpawnHive.score);
+        //Debug.Log("Score "+ SpawnHive.score);
         bee.atCapacity = false;
         return typeof(StateAtHive);
     }
