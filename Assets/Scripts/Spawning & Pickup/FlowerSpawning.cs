@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class FlowerSpawning : MonoBehaviour
 {
     public GameObject flowerPrefab;
     public static List<GameObject> activeFlowers = new List<GameObject>();
     public GameObject quad;
-    public int numOfFlowers = 5;
+    public static int numOfFlowers = 5;
     public static int curFlowers =0;
     private float screenX,screenY;
     Vector2 pos;

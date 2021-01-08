@@ -11,7 +11,7 @@ public class Bird : MonoBehaviour
     public SpriteRenderer sprite{ get; private set;}
     public CapsuleCollider2D BirdCollider;
     public Vector2 birdDir;
-    public float speed =2f;
+    public float speed =2.5f;
     public int targetId;
     public bool isChasing;
     public bool isEating;
@@ -53,11 +53,16 @@ public class Bird : MonoBehaviour
         if(collision.tag =="HBorder")
             this.birdDir.x *= -1f;
         if(collision.tag =="Bees")
+        {
             this.isEating = true;
             this.isChasing = false;
+        }
         if(collision.tag =="Hive")
+        {
             this.isChasing = false;
             this.isFleeing = true;
+        }
+
         if(collision.tag =="Bees" ){
             this.isEating = true;
         }

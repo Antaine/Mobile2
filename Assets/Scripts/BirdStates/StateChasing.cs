@@ -25,7 +25,12 @@ public class StateChasing : State
         if(bird.isChasing)
             return typeof(StateChasing);
         else
+        {
+            bird.isFleeing = true;
             return typeof(StateFlying);
+        }
+
+            
     }
 
     private void ChaseBee(){

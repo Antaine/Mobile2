@@ -68,12 +68,14 @@
      <Compile Include="Assets\Scripts\BirdStates\StateEating.cs" />
      <Compile Include="Assets\Scripts\BirdStates\StateFlying.cs" />
      <Compile Include="Assets\Scripts\BirdStates\StateResting.cs" />
+     <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\FlowerPickup.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\FlowerSpawning.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnBirds.cs" />
      <Compile Include="Assets\Scripts\Spawning &amp; Pickup\SpawnHive.cs" />
      <Compile Include="Assets\Scripts\State.cs" />
      <Compile Include="Assets\Scripts\StateMachine.cs" />
+     <Compile Include="Assets\Scripts\UpdateScore.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>E:/Workspaces/MobileG00347577Antaine/MobileProject2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

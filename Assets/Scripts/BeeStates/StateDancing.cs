@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class StateDancing : State
 {
@@ -11,7 +12,7 @@ public class StateDancing : State
 
     public override Type UpdateState()
     {
-        SpawnHive.score += bee.honey;
+        UpdateScore.score += bee.honey;
         bee.honey =0;
         //Debug.Log("Score "+ SpawnHive.score);
         bee.atCapacity = false;

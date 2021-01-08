@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2300751281713790119}
   - component: {fileID: 2300751281713790116}
   - component: {fileID: -8952182757443984996}
-  - component: {fileID: -6804764450915289895}
   - component: {fileID: 3253122287093621295}
   - component: {fileID: -573334366836880604}
   - component: {fileID: 4527414016628571181}
@@ -102,18 +101,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!114 &-6804764450915289895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300751281713790118}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d67ae3446d39f147ac60babd57d67d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &3253122287093621295
 Rigidbody2D:
   serializedVersion: 4
@@ -159,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52d9cee6c780cd41acbba9fbd7502ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRb: {fileID: 0}
-  BirdCollider: {fileID: 0}
+  myRb: {fileID: 3253122287093621295}
+  BirdCollider: {fileID: -8952182757443984996}
   birdDir: {x: 0, y: 0}
   speed: 2
   targetId: 0

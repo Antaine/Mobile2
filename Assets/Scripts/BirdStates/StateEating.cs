@@ -5,10 +5,10 @@ using System;
 
 public class StateEating : State
 {
+
     public StateEating(Bird connectedBird) : base(connectedBird)
     {
     }
-    
     
     public override Type UpdateState()
     {

@@ -23,7 +23,6 @@ public class SpawnHive : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //BeeMovement.hivePos = spawnPosition;
             Instantiate(hive, spawnPosition, Quaternion.Euler(new Vector2(0, 0)));
             this.GetComponent<SpawnHive>().enabled = false;
             panel.SetActive(false);

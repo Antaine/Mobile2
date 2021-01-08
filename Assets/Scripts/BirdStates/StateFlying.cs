@@ -53,6 +53,4 @@ public class StateFlying : State
         this.dis1 = 0;
         this.dis2 = range+5;
     }
-
-
 }
