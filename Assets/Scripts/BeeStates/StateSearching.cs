@@ -5,7 +5,7 @@ using UnityEngine;
 using System;
 public class StateSearching : State
 {
-    private float range = 3f;
+    private float range = 2.5f;
     private float dis1=0;
     private float dis2 = 6;
     public StateSearching(Bee connectedBee) : base(connectedBee)

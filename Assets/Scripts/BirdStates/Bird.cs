@@ -24,6 +24,10 @@ public class Bird : MonoBehaviour
     public float energyRate;
     public bool isResting;
     public Vector2 nestPos1,nestPos2;
+    private float dis1=0;
+    private float dis2 = 6;
+    private float range = 3f;
+
 
     public virtual void Start()
     {
@@ -104,5 +108,28 @@ public class Bird : MonoBehaviour
             bird.myRb.velocity = new Vector2(0,0);
             bird.transform.position = Vector2.MoveTowards(transform.position, nestPos1, speed*Time.deltaTime);
         } 
+    }
+
+        public void ScanBees(Bird bird){
+        int i =0;
+        foreach(GameObject bee in SpawnHive.activeBees)
+        {
+            if(bee != null){
+                bird.dis1 = Vector2.Distance(bird.transform.position,bee.transform.position);
+                if(bird.dis1 < bird.dis2){
+                    if(Vector2.Distance(bird.transform.position,bee.transform.position) <= range)
+                    {
+                        bird.dis2 = bird.dis1;
+                        bird.isChasing = true;
+                        bird.atNest = false;
+                        bird.isResting =false;
+                        bird.targetId = i;
+                    }
+                }      
+            }
+            i++;
+        }
+        bird.dis1 = 0;
+        bird.dis2 = range+5;
     }
 }
